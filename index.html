@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- 파비콘 아이콘 링크 -->
+  <link rel="shortcut icon" href="./img/icon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 대시보드 페이지 제목 -->
+  <title>T-FarmOn Dash Board</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="./main.js"></script>
+</head>
+  <link href="style.css" rel="stylesheet">
+ 
+</head>
+<body>
+<!-- 전체 대시보드를 위한 메인 컨테이너 -->
+<div class="bg-gray-100 dark:bg-gray-900 dark:text-white text-gray-600 h-screen flex overflow-hidden text-sm">
+  
+  <!-- 사이드바 컨테이너 -->
+  <div class="bg-white dark:bg-gray-900 dark:border-gray-800 w-48 flex-shrink-0 border-r border-gray-200 flex-col hidden sm:flex">
+    
+    <!-- 사이드바 로고 섹션 -->
+    <div class="h-16 text-blue-500 flex items-center justify-center">
+      <!-- PNG 로고 이미지 -->
+      <img src="img/logo.png" alt="T-FarmOn Logo" class="w-12">
+    </div>
+
+    <!-- 사이드바의 버튼들 -->
+    <div class="flex mx-auto flex-grow mt-4 flex-col text-gray-400 space-y-4">
+      
+      <!-- 첫 번째 버튼 (대시보드) -->
+      <button class="h-10 w-full dark:bg-gray-700 dark:text-white rounded-md flex items-center justify-start bg-blue-100 text-blue-500 px-4">
+          <svg viewBox="0 0 24 24" class="h-5 mr-3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>대시보드</span>
+      </button>
+      
+      <!-- 두 번째 버튼 (사용자) -->
+      <button class="h-10 w-full dark:text-gray-500 rounded-md flex items-center justify-start px-4">
+        <svg viewBox="0 0 24 24" class="h-5 mr-3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+        <span>생산관리</span>
+      </button>
+
+      <!-- 세 번째 버튼 (설정) -->
+      <button class="h-10 w-full dark:text-gray-500 rounded-md flex items-center justify-start px-4">
+        <svg viewBox="0 0 24 24" class="h-5 mr-3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>자원관리</span>
+      </button>
+
+      
+      <!-- 네 번째 버튼 (설정) -->
+      <button class="h-10 w-full dark:text-gray-500 rounded-md flex items-center justify-start px-4">
+        <svg viewBox="0 0 24 24" class="h-5 mr-3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>인력관리</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- 메인 콘텐츠 영역 -->
+  <div class="flex-grow overflow-hidden h-full flex flex-col">
+    
+    <!-- 상단 바 -->
+    <div class="h-16 lg:flex w-full border-b border-gray-200 dark:border-gray-800 hidden px-10">
+      <!-- 상단 메뉴 -->
+      <div class="flex h-full text-gray-600 dark:text-gray-400">
+        <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">대시보드</a>
+        <a href="#" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">생산관리</a>
+        <a href="#" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">자원관리</a>
+        <a href="#" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center">인력관리</a>
+      </div>
+      
+      <div class="ml-auto flex items-center space-x-7">
+          <button class="flex items-center">
+          <span class="relative flex items-center">
+          <span class="ml-3">관리자</span>          
+          </span>
+          </button>
+      </div>
+    </div>
+
+    <!-- 사이드 메뉴 및 메인 콘텐츠 -->
+    <div class="flex-grow flex overflow-x-hidden">
+      
+      <!-- 메인 콘텐츠 -->
+  <div class="flex-grow bg-white dark:bg-gray-900 overflow-y-auto">
+            <div class="sm:px-7 sm:pt-7 px-4 pt-4 flex flex-col w-full border-b border-gray-200 bg-white dark:bg-gray-900 dark:text-white dark:border-gray-800 sticky top-0">
+
+    <div class="sm:px-7 sm:pt-7 px-4 pt-4 flex flex-col w-full border-b border-gray-200 bg-white dark:bg-gray-900 dark:text-white dark:border-gray-800 sticky top-0">
+      <div class="flex w-full items-center">
+        <div class="flex items-center text-3xl text-gray-900 dark:text-white">
+          Dash board
+        </div>
+        <div class="ml-auto flex items-center space-x-4 relative">
+          <!-- 날짜 범위 선택기 부분 -->
+          <div class="flex items-center space-x-2 cursor-pointer">
+            <div id="date-range" class="flex items-center">
+              <span id="start-date-display" class="text-sm text-gray-600 dark:text-gray-400">yyyy.mm.dd</span>
+              <span class="mx-2">~</span>
+              <span id="end-date-display" class="text-sm text-gray-600 dark:text-gray-400">yyyy.mm.dd</span>
+              <svg class="ml-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+            </div>
+            <!-- 달력 팝업 -->
+            <div id="calendar-popup" class="calendar-popup flex space-x-4">
+              <div class="calendar" id="start-calendar">
+                <!-- 시작 날짜 달력 -->
+                <input type="date" id="start-date" name="start-date" class="border border-gray-300 dark:border-gray-700 rounded-md shadow-sm">
+              </div>
+              <div class="calendar" id="end-calendar">
+                <!-- 종료 날짜 달력 -->
+                <input type="date" id="end-date" name="end-date" class="border border-gray-300 dark:border-gray-700 rounded-md shadow-sm">
+              </div>
+            </div>
+          </div>
+          <!-- 버튼 -->
+          <button class="w-8 h-8 ml-4 text-gray-400 shadow dark:text-gray-400 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700">
+            <svg viewBox="0 0 24 24" class="w-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="1"></circle>
+              <circle cx="19" cy="12" r="1"></circle>
+              <circle cx="5" cy="12" r="1"></circle>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+
+      
+          <!-- 메인 메뉴 탭 -->
+          <div class="flex items-center space-x-3 sm:mt-7 mt-4">
+            <a href="#" class="px-3 border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white pb-1.5">Total</a>
+            <a href="#" class="px-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 pb-1.5">Weekly</a>
+            <a href="#" class="px-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 pb-1.5 sm:block hidden">Analysis</a>
+          </div>
+        </div>
+        
+        <!-- 메인 콘텐츠 내용 -->
+        <div class="flex-grow bg-white dark:bg-gray-900 overflow-y-auto">
+          <div class="sm:px-7 p-4">
+            <!-- 화면 구성을 위한 Flexbox 레이아웃 -->
+            <div class="flex flex-col gap-4">
+              <!-- 첫 번째 창: 생산관리 현황 -->
+              <div class="bg-white dark:bg-gray-800 shadow rounded-md border border-gray-200 dark:border-gray-700 p-4">
+                <div class="text-xl font-semibold text-gray-900 dark:text-white">
+                  생산관리 현황
+                </div>
+                <!-- 생산 그래프 -->
+                <div class="charts-container">
+                  <!-- 첫 번째 그래프: 선 그래프 -->
+                  <div class="chart-container">
+                      <canvas id="productionChart"></canvas>
+                  </div>
+                  <!-- 두 번째 그래프: 막대 그래프 -->
+                  <div class="chart-container">
+                      <canvas id="barChart"></canvas>
+                  </div>
+              </div>
+          </div>
+              </div>
+            </div>
+              <!-- 두 번째 창: 자원투입 현황 -->
+              <div class="bg-white dark:bg-gray-800 shadow rounded-md border border-gray-200 dark:border-gray-700 p-4">
+                <div class="text-xl font-semibold text-gray-900 dark:text-white">
+                  자원투입 현황
+                </div>
+                <!-- 여기에 자원투입 현황에 대한 콘텐츠 추가 -->
+                <table class="w-full text-left mt-4">
+                  <thead>
+                    <tr class="text-gray-400">
+                      <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">종자(Lip)</th>
+                      <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">스폰지(EA)</th>
+                      <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800 hidden md:table-cell">양액(kg)</th>
+                      <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Co2(통)</th>
+                      <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800 sm:text-gray-400 text-white">증감율(%)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-600 dark:text-gray-100">
+                    <!-- 데이터 행 추가 -->
+                    <tr>
+                      <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 ">
+                        <div class="flex items-center">
+                          60,000 
+                        </div>
+                      </td>
+                      <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
+                        <div class="flex items-center">
+                          55,000
+                        </div>
+                      </td>
+                      <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 md:table-cell hidden">200</td>
+                      <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 ">5</td>
+                      <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
+                        <div class="flex items-center text-red-500">
+                          <div class="sm:flex hidden flex-col">
+                            120
+                          </div>
+                          <button class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
+                            <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <circle cx="12" cy="12" r="1"></circle>
+                              <circle cx="19" cy="12" r="1"></circle>
+                              <circle cx="5" cy="12" r="1"></circle>
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- 예를 들어 그래프나 차트 삽입 -->
+              </div>
+      
+              <!-- 세 번째 창: 인력관리 현황 -->
+              <div class="bg-white dark:bg-gray-800 shadow rounded-md border border-gray-200 dark:border-gray-700 p-4">
+                <div class="text-xl font-semibold text-gray-900 dark:text-white">
+                  인력관리 현황
+                </div>
+                <!-- 여기에 인력관리 현황에 대한 콘텐츠 추가 -->
+                <!-- 예를 들어 인력 관련 통계나 그래프 삽입 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
